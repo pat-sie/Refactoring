@@ -47,33 +47,31 @@ class Customer {
 	}
 
 	public double amountFor(Rental each) {
-		double thisAmount = 0;
 		if (each.getMovie().getPriceCode() == Movie.REGULAR) {
-			return amountForRegular(each, thisAmount);
+			return amountForRegular(each);
 		}
 		if (each.getMovie().getPriceCode() == Movie.NEW_RELEASE) {
-			return amountForNewRelease(each, thisAmount);
+			return amountForNewRelease(each);
 		}
 		if (each.getMovie().getPriceCode() == Movie.CHILDRENS) {
-			return amountForChildren(each, thisAmount);
+			return amountForChildren(each);
 		}
-		return thisAmount;
+		return 0;
 	}
 
-	private double amountForChildren(Rental each, double thisAmount) {
-		thisAmount += 1.5;
+	private double amountForChildren(Rental each) {
+		double thisAmount = 1.5;
 		if (each.getDaysRented() > 3)
 			thisAmount += (each.getDaysRented() - 3) * 1.5;
 		return thisAmount;
 	}
 
-	private double amountForNewRelease(Rental each, double thisAmount) {
-		thisAmount += each.getDaysRented() * 3;
-		return thisAmount;
+	private double amountForNewRelease(Rental each) {
+		return each.getDaysRented() * 3;
 	}
 
-	private double amountForRegular(Rental each, double thisAmount) {
-		thisAmount += 2;
+	private double amountForRegular(Rental each) {
+		double thisAmount = 2;
 		if (each.getDaysRented() > 2)
 			thisAmount += (each.getDaysRented() - 2) * 1.5;
 		return thisAmount;
