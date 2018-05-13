@@ -6,12 +6,12 @@ class Customer {
 	private String name;
 	private Vector rentals = new Vector();
 
-	public Customer(String newname) {
-		name = newname;
+	public Customer(String name) {
+		this.name = name;
 	};
 
-	public void addRental(Rental arg) {
-		rentals.addElement(arg);
+	public void addRental(Rental rental) {
+		rentals.addElement(rental);
 	};
 
 	public String getName() {
@@ -46,35 +46,35 @@ class Customer {
 		return result;
 	}
 
-	public double amountFor(Rental each) {
-		if (each.getMovie().getPriceCode() == Movie.REGULAR) {
-			return amountForRegular(each);
+	public double amountFor(Rental rental) {
+		if (rental.getMovie().getPriceCode() == Movie.REGULAR) {
+			return amountForRegular(rental);
 		}
-		if (each.getMovie().getPriceCode() == Movie.NEW_RELEASE) {
-			return amountForNewRelease(each);
+		if (rental.getMovie().getPriceCode() == Movie.NEW_RELEASE) {
+			return amountForNewRelease(rental);
 		}
-		if (each.getMovie().getPriceCode() == Movie.CHILDRENS) {
-			return amountForChildren(each);
+		if (rental.getMovie().getPriceCode() == Movie.CHILDRENS) {
+			return amountForChildren(rental);
 		}
 		return 0;
 	}
 
-	private double amountForChildren(Rental each) {
-		double thisAmount = 1.5;
-		if (each.getDaysRented() > 3)
-			thisAmount += (each.getDaysRented() - 3) * 1.5;
-		return thisAmount;
+	private double amountForChildren(Rental rental) {
+		double amount = 1.5;
+		if (rental.getDaysRented() > 3)
+			amount += (rental.getDaysRented() - 3) * 1.5;
+		return amount;
 	}
 
-	private double amountForNewRelease(Rental each) {
-		return each.getDaysRented() * 3;
+	private double amountForNewRelease(Rental rental) {
+		return rental.getDaysRented() * 3;
 	}
 
-	private double amountForRegular(Rental each) {
-		double thisAmount = 2;
-		if (each.getDaysRented() > 2)
-			thisAmount += (each.getDaysRented() - 2) * 1.5;
-		return thisAmount;
+	private double amountForRegular(Rental rental) {
+		double amount = 2;
+		if (rental.getDaysRented() > 2)
+			amount += (rental.getDaysRented() - 2) * 1.5;
+		return amount;
 	}
 
 }
