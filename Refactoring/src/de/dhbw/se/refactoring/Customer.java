@@ -48,16 +48,14 @@ class Customer {
 
 	public double amountFor(Rental each) {
 		double thisAmount = 0;
-		switch (each.getMovie().getPriceCode()) {
-		case Movie.REGULAR:
-			thisAmount = amountForRegular(each, thisAmount);
-			break;
-		case Movie.NEW_RELEASE:
-			thisAmount = amountForNewRelease(each, thisAmount);
-			break;
-		case Movie.CHILDRENS:
-			thisAmount = amountForChildren(each, thisAmount);
-			break;
+		if (each.getMovie().getPriceCode() == Movie.REGULAR) {
+			return amountForRegular(each, thisAmount);
+		}
+		if (each.getMovie().getPriceCode() == Movie.NEW_RELEASE) {
+			return amountForNewRelease(each, thisAmount);
+		}
+		if (each.getMovie().getPriceCode() == Movie.CHILDRENS) {
+			return amountForChildren(each, thisAmount);
 		}
 		return thisAmount;
 	}
