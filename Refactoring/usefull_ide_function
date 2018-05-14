@@ -1,0 +1,5 @@
+Usefull function for Refactoring in Eclipse: Extract Method
+
+With this function you can choose a code snipped that will be extracted as a method.
+In Eclipse you do this by selecting the code you want to extract and pressing Alt + Shift + M.
+After that you can simply give the method a name. Eclipse does the rest for you.
